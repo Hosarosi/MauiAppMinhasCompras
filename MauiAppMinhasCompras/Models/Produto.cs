@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿
+using SQLite;
 
 namespace MauiAppMinhasCompras.Models
 {
@@ -8,6 +9,7 @@ namespace MauiAppMinhasCompras.Models
 
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
         public string Descricao
         {
             get => _descricao;
@@ -21,8 +23,16 @@ namespace MauiAppMinhasCompras.Models
                 _descricao = value;
             }
         }
+
         public double Quantidade { get; set; }
+
         public double Preco { get; set; }
-        public double Total { get => Quantidade * Preco; }
+
+        public double Total
+        {
+            get => Quantidade * Preco;
+        }
+
+        public string Categoria { get; set; }
     }
 }

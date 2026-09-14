@@ -134,5 +134,27 @@ public partial class ListaProduto : ContentPage
             lst_produtos.IsRefreshing = false;
 
         }
+
+    }
+    private async void pk_filtro_SelectedIndexChanged(
+    object sender, EventArgs e)
+    {
+        string categoria = pk_filtro.SelectedItem?.ToString();
+
+        lista.Clear();
+
+        List<Produto> produtos = await App.Db.GetAll();
+
+        if (categoria != "Todas")
+        {
+            produtos = produtos
+                .Where(p => p.Categoria == categoria)
+                .ToList();
+        }
+
+        foreach (Produto p in produtos)
+        {
+            lista.Add(p);
+        }
     }
 }
